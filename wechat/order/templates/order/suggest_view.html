@@ -1,0 +1,67 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>吐槽清单</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static "bootstrap-3.3.5/dist/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "flat-ui/dist/css/flat-ui.css" %}" rel="stylesheet">
+    <link href="{% static "bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static "flat-ui/img/favicon.ico" %}">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
+   
+  <!-- jQuery -->
+  <script type="text/javascript" charset="utf8" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+   
+  <!-- DataTables -->
+  <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
+
+  </head>
+  <style>
+  </style>
+  <body>
+    <div class="container-fluid">
+        <table id="" class="display">
+            <thead>
+                <tr>
+                    {% if is_order_admin %}
+                    <th>姓名</th>
+                    {% endif %} 
+                    <th>标题</th>
+                    <th>日期</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for suggest in suggest_list %}
+                  <tr>
+                      {% if is_order_admin %}
+                      <td>{{ suggest.user }}</td>
+                      {% endif %}
+                      <td><a href="/suggest_reply/{{wechat_id}}/{{suggest.id}}">{{ suggest.title }}</a></td>
+                      <td>{{ suggest.date }}</td>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+  </body>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static "bootstrap-3.3.5/dist/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "flat-ui/js/radiocheck.js" %}"></script>
+  <script>
+    $(document).ready( function () {
+        $('table.display').DataTable({
+            info: false,
+            lengthChange: false,
+            pageLength: 10,
+            "searching": false,
+            "order": [[ 0, "desc" ]],
+        });
+    });
+  </script>
+</html>

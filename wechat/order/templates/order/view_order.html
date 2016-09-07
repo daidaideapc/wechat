@@ -1,0 +1,105 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>30天内的订单</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static "bootstrap-3.3.5/dist/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "flat-ui/dist/css/flat-ui.css" %}" rel="stylesheet">
+    <link href="{% static "bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static "flat-ui/img/favicon.ico" %}">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
+   
+  <!-- jQuery -->
+  <script type="text/javascript" charset="utf8" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+   
+  <!-- DataTables -->
+  <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
+
+  </head>
+  <style>
+  </style>
+  <body>
+    <div class="container-fluid">
+      {% if is_order_admin %}
+      <div class="span7 text-center">
+          <h4 class="demo-panel-title">{{dinner_order_date}}晚餐</h4>
+          <h4 class="demo-panel-title">{{dinner_spicy_num}}份辣,{{dinner_not_spicy_num}}份不辣,{{dinner_vegetable_num}}份素</h4>
+          <h4 class="demo-panel-title">{{lunch_order_date}}午餐</h4>
+          <h4 class="demo-panel-title">{{lunch_order_num}}份</h4>
+          <h4 class="demo-panel-title"> </h4>
+          <h4 class="demo-panel-title">================</h4>
+      </div>
+      {% endif  %}
+      <div class="span7 text-center">
+        <h4 class="demo-panel-title">晚餐</h4>
+      </div>
+        <table id="" class="display">
+            <thead>
+                <tr>
+                    <th>日期</th>
+                    {% if is_order_admin %}
+                    <th>姓名</th>
+                    {% endif %}
+                    <th>口味</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in dinner_order_list %}
+                  <tr>
+                      <td>{{ order.date }}</td>
+                      {% if is_order_admin %}
+                      <td>{{ order.user.name }}</td>
+                      {% endif %}
+                      <td>{{ order.category }}</td>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="span7 text-center">
+          <h4 class="demo-panel-title">午餐</h4>
+        </div>
+        <table id="" class="display">
+            <thead>
+                <tr>
+                    <th>日期</th>
+                    {% if is_order_admin %}
+                    <th>姓名</th>
+                    {% endif %}
+                    <th>口味</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in lunch_order_list %}
+                  <tr>
+                      <td>{{ order.date }}</td>
+                      {% if is_order_admin %}
+                      <td>{{ order.user.name }}</td>
+                      {% endif %}
+                      <td>meat</td>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+  </body>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static "bootstrap-3.3.5/dist/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "flat-ui/js/radiocheck.js" %}"></script>
+  <script>
+    $(document).ready( function () {
+        $('table.display').DataTable({
+            info: false,
+            lengthChange: false,
+            pageLength: 10,
+            "searching": false,
+            "order": [[ 0, "desc" ]],
+        });
+    });
+  </script>
+</html>

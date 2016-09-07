@@ -1,0 +1,107 @@
+Creating test database for alias 'default'...
+<type 'NoneType'>
+
+
+lunch_order_date 2015 November 3
+dinner_order_date 2015 November 2
+wechat_id an839274949
+
+
+
+
+lunch_order_date 2015 November 3
+dinner_order_date 2015 November 2
+wechat_id we8449875098
+
+
+
+
+lunch_order_date 2015 November 3
+dinner_order_date 2015 November 2
+is_order_admin False
+2015-11-03 安鹏程 meat lunch True
+2015-11-05 安鹏程 meat lunch True
+2015-11-07 安鹏程 meat lunch True
+2015-11-02 安鹏程 meat dinner True
+2015-11-03 安鹏程 meat dinner True
+2015-11-04 安鹏程 vegetable dinner True
+2015-11-05 安鹏程 vegetable dinner True
+
+
+
+
+context 你不是我们的人！
+title 你没权限
+
+
+
+
+auto_order True
+wechat_id an839274949
+default_category meat
+
+
+context 修改成功
+title 订餐设置
+
+
+auto_order False
+wechat_id an839274949
+default_category meat
+
+
+context 修改成功
+title 订餐设置
+
+
+auto_order False
+wechat_id an839274949
+default_category vegetable
+
+
+context 修改成功
+title 订餐设置
+
+
+auto_order False
+wechat_id an839274949
+default_category meat
+
+
+context 修改成功
+title 订餐设置
+
+
+auto_order False
+wechat_id an839274949
+default_category vegetable
+
+
+context 你不是我们的人！
+title 你没权限
+
+
+context 你不是我们的人！
+title 你没权限
+
+
+context 你不是我们的人！
+title 你没权限
+
+
+
+
+lunch_order_date 2015 November 3
+dinner_order_date 2015 November 2
+is_order_admin False
+
+
+
+
+context 你不是我们的人！
+title 你没权限
+
+
+
+
+Destroying test database for alias 'default'...
